@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj4n2nt1khb0r"]
+
+[ext_resource type="Script" path="res://test/control_test.gd" id="1_0tmve"]
+[ext_resource type="Texture2D" uid="uid://dw0mkm2gcgkms" path="res://resources/blank_circle.png" id="1_m2p5q"]
+[ext_resource type="Texture2D" uid="uid://i7e5ym0awdkf" path="res://resources/square_small.png" id="3_sw4j2"]
+[ext_resource type="Texture2D" uid="uid://chq7gpu2tbx7d" path="res://resources/soft_square_small.png" id="4_uay2u"]
+[ext_resource type="Texture2D" uid="uid://ooltdo521x60" path="res://resources/diamond_small.png" id="5_3n4io"]
+
+[node name="ControlTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0tmve")
+
+[node name="Left" type="TouchScreenButton" parent="."]
+position = Vector2(17, 389)
+texture_normal = ExtResource("1_m2p5q")
+
+[node name="Label" type="Label" parent="Left"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 12.0
+offset_top = 11.0
+offset_right = 52.0
+offset_bottom = 34.0
+scale = Vector2(2, 2)
+text = "<-"
+
+[node name="Right" type="TouchScreenButton" parent="."]
+position = Vector2(208, 390)
+texture_normal = ExtResource("1_m2p5q")
+
+[node name="Label" type="Label" parent="Right"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 48.0
+offset_top = 59.0
+offset_right = 88.0
+offset_bottom = 82.0
+scale = Vector2(-2, -2)
+text = "<-"
+
+[node name="BlankCircle" type="Sprite2D" parent="."]
+modulate = Color(0.622227, 0.969086, 0.907177, 1)
+position = Vector2(151, 123)
+texture = ExtResource("1_m2p5q")
+
+[node name="SquareSmall" type="Sprite2D" parent="."]
+position = Vector2(141, 355)
+texture = ExtResource("3_sw4j2")
+
+[node name="SoftSquareSmall" type="Sprite2D" parent="."]
+position = Vector2(208, 352)
+texture = ExtResource("4_uay2u")
+
+[node name="DiamondSmall" type="Sprite2D" parent="."]
+position = Vector2(70, 329)
+texture = ExtResource("5_3n4io")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(215, 182, 225, 299, 117, 221, 269, 210)
+
+[connection signal="pressed" from="Left" to="." method="_on_left_pressed"]
+[connection signal="released" from="Left" to="." method="_on_left_released"]
+[connection signal="pressed" from="Right" to="." method="_on_right_pressed"]
+[connection signal="released" from="Right" to="." method="_on_right_released"]
