@@ -1,39 +1,81 @@
-[gd_scene load_steps=6 format=3 uid="uid://byfsq6s16sg13"]
+[gd_scene load_steps=5 format=3 uid="uid://byfsq6s16sg13"]
 
 [ext_resource type="Script" path="res://test/test_drag_follow.gd" id="1_iith7"]
-[ext_resource type="Texture2D" uid="uid://dw0mkm2gcgkms" path="res://resources/blank_circle.png" id="2_axcb4"]
-[ext_resource type="Texture2D" uid="uid://ooltdo521x60" path="res://resources/diamond_small.png" id="3_ritad"]
-[ext_resource type="Texture2D" uid="uid://chq7gpu2tbx7d" path="res://resources/soft_square_small.png" id="4_123km"]
+[ext_resource type="PackedScene" uid="uid://cd7i8kg7y74dv" path="res://test/test_draggy_boy.tscn" id="2_e6cco"]
+[ext_resource type="Texture2D" uid="uid://i7e5ym0awdkf" path="res://resources/square_small.png" id="4_ms3nb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6gko6"]
-radius = 33.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a14wi"]
+size = Vector2(20, 120)
 
 [node name="TestDragFollow" type="Node2D"]
 script = ExtResource("1_iith7")
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2(37, 64)
-texture_normal = ExtResource("2_axcb4")
-texture_pressed = ExtResource("3_ritad")
+[node name="PinJoint2D" parent="." instance=ExtResource("2_e6cco")]
 
-[node name="SoftSquareSmall" type="Sprite2D" parent="TouchScreenButton"]
-position = Vector2(34, -41)
-texture = ExtResource("4_123km")
+[node name="PinJoint2D2" parent="." instance=ExtResource("2_e6cco")]
+modulate = Color(1, 0.113725, 1, 1)
+position = Vector2(150, 127)
 
-[node name="Line2D" type="Line2D" parent="TouchScreenButton"]
-position = Vector2(31, 11)
-points = PackedVector2Array(1, -42, 0, 20)
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(99, 301)
+collision_layer = 4
+collision_mask = 0
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(233, 148)
-input_pickable = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_a14wi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CircleShape2D_6gko6")
+[node name="Line2D" type="Line2D" parent="StaticBody2D"]
+points = PackedVector2Array(0, 60, 0, -60)
+width = 20.0
+default_color = Color(0.313726, 1, 1, 1)
 
-[node name="BlankCircle" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_axcb4")
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(44, 126)
+collision_layer = 4
+collision_mask = 0
 
-[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
-[connection signal="released" from="TouchScreenButton" to="." method="_on_touch_screen_button_released"]
-[connection signal="input_event" from="CharacterBody2D" to="." method="_on_character_body_2d_input_event"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_a14wi")
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D2"]
+points = PackedVector2Array(0, 60, 0, -60)
+width = 20.0
+default_color = Color(0.313726, 1, 1, 1)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(247, 377)
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_a14wi")
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D3"]
+points = PackedVector2Array(0, 60, 0, -60)
+width = 20.0
+default_color = Color(0.313726, 1, 1, 1)
+
+[node name="Light1" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 0.305882, 1)
+texture_normal = ExtResource("4_ms3nb")
+
+[node name="Line2D" type="Line2D" parent="Light1"]
+visible = false
+position = Vector2(23, 18)
+points = PackedVector2Array(0, 0, 0, 480)
+width = 20.0
+
+[node name="Light2" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 0.305882, 1)
+position = Vector2(160, 0)
+texture_normal = ExtResource("4_ms3nb")
+
+[node name="Line2D" type="Line2D" parent="Light2"]
+visible = false
+position = Vector2(23, 18)
+points = PackedVector2Array(0, 0, 0, 480)
+width = 20.0
+
+[connection signal="pressed" from="Light1" to="." method="_on_light_1_pressed"]
+[connection signal="pressed" from="Light2" to="." method="_on_light_2_pressed"]

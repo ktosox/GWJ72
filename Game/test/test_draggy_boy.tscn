@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd7i8kg7y74dv"]
+
+[ext_resource type="Script" path="res://test/test_draggy_boy.gd" id="1_8yauq"]
+[ext_resource type="Texture2D" uid="uid://dw0mkm2gcgkms" path="res://resources/blank_circle.png" id="1_nn7l2"]
+[ext_resource type="Texture2D" uid="uid://chq7gpu2tbx7d" path="res://resources/soft_square_small.png" id="2_7mx02"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6gko6"]
+radius = 33.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ts42"]
+size = Vector2(46, 46)
+
+[node name="PinJoint2D" type="PinJoint2D"]
+position = Vector2(233, 148)
+node_a = NodePath("CharacterBody2D")
+node_b = NodePath("RigidBody2D")
+bias = 0.05
+softness = 5.0
+script = ExtResource("1_8yauq")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, 90)
+collision_mask = 0
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_6gko6")
+
+[node name="BlankCircle" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_nn7l2")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 6
+
+[node name="SoftSquareSmall" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("2_7mx02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_1ts42")
+
+[connection signal="input_event" from="CharacterBody2D" to="." method="_on_character_body_2d_input_event"]

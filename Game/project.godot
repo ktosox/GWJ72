@@ -22,6 +22,16 @@ window/size/viewport_height=480
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="DO NOT USE"
+2d_physics/layer_2="PLAYER"
+2d_physics/layer_3="WALLS"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
