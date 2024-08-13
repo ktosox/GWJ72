@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GWJ72"
-run/main_scene="res://test/test_drag_follow.tscn"
+run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -31,6 +31,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_1="DO NOT USE"
 2d_physics/layer_2="PLAYER"
 2d_physics/layer_3="WALLS"
+2d_physics/layer_4="BALL"
 
 [rendering]
 

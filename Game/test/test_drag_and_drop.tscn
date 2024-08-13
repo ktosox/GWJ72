@@ -1,0 +1,221 @@
+[gd_scene load_steps=16 format=3 uid="uid://c33q7d07dgosa"]
+
+[ext_resource type="Script" path="res://test/test_drag_and_drop.gd" id="1_fdctj"]
+[ext_resource type="PackedScene" uid="uid://cd7i8kg7y74dv" path="res://test/test_draggy_boy.tscn" id="1_rgxuy"]
+[ext_resource type="PackedScene" uid="uid://c0ibat7yi5cdr" path="res://the_triangle.tscn" id="4_bpewh"]
+
+[sub_resource type="Animation" id="Animation_6h44b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Polygon2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(353, 498.15)]
+}
+
+[sub_resource type="Animation" id="Animation_ie3vy"]
+resource_name = "new_animation"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Polygon2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(353, -150), Vector2(353, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cado2"]
+_data = {
+"RESET": SubResource("Animation_6h44b"),
+"new_animation": SubResource("Animation_ie3vy")
+}
+
+[sub_resource type="Animation" id="Animation_x6sc8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-43, 331)]
+}
+
+[sub_resource type="Animation" id="Animation_wnmgx"]
+resource_name = "new_animation"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9, 2, 8),
+"transitions": PackedFloat32Array(1, 0, 1, 1),
+"update": 0,
+"values": [Vector2(-43, 331), Vector2(-43, 600), Vector2(-43, -150), Vector2(-43, 331)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ed8sb"]
+_data = {
+"RESET": SubResource("Animation_x6sc8"),
+"new_animation": SubResource("Animation_wnmgx")
+}
+
+[sub_resource type="Animation" id="Animation_sj50v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Polygon2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-43, 76)]
+}
+
+[sub_resource type="Animation" id="Animation_mi6nr"]
+resource_name = "new_animation"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Polygon2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.8, 3.9, 8),
+"transitions": PackedFloat32Array(1, 0, 2, 1),
+"update": 0,
+"values": [Vector2(-43, 76), Vector2(-43, 600), Vector2(-43, -150), Vector2(-43, 76)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fg5hh"]
+_data = {
+"RESET": SubResource("Animation_sj50v"),
+"new_animation": SubResource("Animation_mi6nr")
+}
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r4fn7"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_viitc"]
+size = Vector2(20, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jotwx"]
+size = Vector2(400, 60)
+
+[node name="TestDragAndDrop" type="Node2D"]
+script = ExtResource("1_fdctj")
+
+[node name="Polygon2D4" type="Polygon2D" parent="."]
+position = Vector2(1, 0)
+color = Color(0.270222, 0.270222, 0.270222, 1)
+polygon = PackedVector2Array(-63, -101, -43, 517, 446, 523, 387, -107)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(353, 498.15)
+rotation = 3.14159
+polygon = PackedVector2Array(400, -60, 400, 140, 0, 80, 0, 0)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Polygon2D2"]
+root_node = NodePath("../../Polygon2D")
+libraries = {
+"": SubResource("AnimationLibrary_cado2")
+}
+autoplay = "new_animation"
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2(-43, 331)
+polygon = PackedVector2Array(400, -60, 400, 140, 0, 80, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Polygon2D3"]
+libraries = {
+"": SubResource("AnimationLibrary_ed8sb")
+}
+autoplay = "new_animation"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-43, 76)
+polygon = PackedVector2Array(400, -60, 400, 140, 0, 80, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Polygon2D"]
+root_node = NodePath("../../Polygon2D2")
+libraries = {
+"": SubResource("AnimationLibrary_fg5hh")
+}
+autoplay = "new_animation"
+
+[node name="PinJoint2D" parent="." instance=ExtResource("1_rgxuy")]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(129, 133)
+
+[node name="RigidBody2D" parent="PinJoint2D" index="1"]
+physics_material_override = SubResource("PhysicsMaterial_r4fn7")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+modulate = Color(1, 0.0745098, 0.133333, 1)
+position = Vector2(310, -10)
+collision_layer = 4
+collision_mask = 0
+constant_linear_velocity = Vector2(-120, 0)
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D2"]
+points = PackedVector2Array(0, 0, 0, 500)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, 250)
+shape = SubResource("RectangleShape2D_viitc")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+modulate = Color(1, 0.0745098, 0.133333, 1)
+position = Vector2(0, -11)
+collision_layer = 4
+collision_mask = 0
+constant_linear_velocity = Vector2(120, 0)
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D4"]
+points = PackedVector2Array(0, 0, 0, 500)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(0, 250)
+shape = SubResource("RectangleShape2D_viitc")
+
+[node name="RigidBody2D" parent="." instance=ExtResource("4_bpewh")]
+modulate = Color(0.210032, 0.201035, 0.587793, 1)
+position = Vector2(164, 69)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(152, 521)
+collision_layer = 4
+collision_mask = 8
+constant_linear_velocity = Vector2(0, -295)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_jotwx")
+
+[editable path="PinJoint2D"]

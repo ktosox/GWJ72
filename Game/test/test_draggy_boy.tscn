@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://test/test_draggy_boy.gd" id="1_8yauq"]
 [ext_resource type="Texture2D" uid="uid://dw0mkm2gcgkms" path="res://resources/blank_circle.png" id="1_nn7l2"]
-[ext_resource type="Texture2D" uid="uid://chq7gpu2tbx7d" path="res://resources/soft_square_small.png" id="2_7mx02"]
+[ext_resource type="Texture2D" uid="uid://i7e5ym0awdkf" path="res://resources/square_small.png" id="3_ip7pq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gko6"]
 radius = 33.0
@@ -34,7 +34,7 @@ collision_layer = 2
 collision_mask = 6
 
 [node name="SoftSquareSmall" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("2_7mx02")
+texture = ExtResource("3_ip7pq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_1ts42")

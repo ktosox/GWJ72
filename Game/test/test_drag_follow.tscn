@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://byfsq6s16sg13"]
+[gd_scene load_steps=7 format=3 uid="uid://byfsq6s16sg13"]
 
 [ext_resource type="Script" path="res://test/test_drag_follow.gd" id="1_iith7"]
 [ext_resource type="PackedScene" uid="uid://cd7i8kg7y74dv" path="res://test/test_draggy_boy.tscn" id="2_e6cco"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a14wi"]
 size = Vector2(20, 120)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o76o6"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y18ar"]
+size = Vector2(46, 46)
 
 [node name="TestDragFollow" type="Node2D"]
 script = ExtResource("1_iith7")
@@ -76,6 +82,38 @@ visible = false
 position = Vector2(23, 18)
 points = PackedVector2Array(0, 0, 0, 480)
 width = 20.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(235, 27)
+collision_layer = 0
+collision_mask = 6
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_o76o6")
+gravity_scale = 0.2
+can_sleep = false
+linear_damp = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_y18ar")
+
+[node name="SquareSmall" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("4_ms3nb")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(115, 37)
+collision_layer = 0
+collision_mask = 6
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_o76o6")
+gravity_scale = 0.2
+can_sleep = false
+linear_damp = 4.0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="RigidBody2D2"]
+polygon = PackedVector2Array(0, 45, 25, 0, -25, 0)
+
+[node name="Line2D" type="Polygon2D" parent="RigidBody2D2"]
+polygon = PackedVector2Array(0, 45, 25, 0, -25, 0)
 
 [connection signal="pressed" from="Light1" to="." method="_on_light_1_pressed"]
 [connection signal="pressed" from="Light2" to="." method="_on_light_2_pressed"]

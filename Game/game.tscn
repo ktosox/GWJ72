@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://uuth4jhcgoju"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_o2kd0"]
+[ext_resource type="PackedScene" uid="uid://dxyvbghnsyg6x" path="res://draggy_flipper.tscn" id="2_7cx1p"]
+[ext_resource type="PackedScene" uid="uid://bhlqqxqin5gpa" path="res://level_parts/triangle_eater.tscn" id="4_3uo4o"]
+[ext_resource type="PackedScene" uid="uid://c0ibat7yi5cdr" path="res://the_triangle.tscn" id="5_kbeai"]
+[ext_resource type="PackedScene" uid="uid://dddrjlmei7nij" path="res://level_parts/left_wall.tscn" id="5_qumv8"]
+[ext_resource type="PackedScene" uid="uid://dkb4luie751ql" path="res://level_parts/right_wall.tscn" id="6_uanuc"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_o2kd0")
+
+[node name="DraggyFlipper" parent="." instance=ExtResource("2_7cx1p")]
+position = Vector2(145, 310)
+
+[node name="Triangle" parent="." instance=ExtResource("5_kbeai")]
+position = Vector2(140, 162)
+
+[node name="TriangleEater" parent="." instance=ExtResource("4_3uo4o")]
+
+[node name="LeftWall" parent="." instance=ExtResource("5_qumv8")]
+position = Vector2(12, 305)
+
+[node name="LeftWall2" parent="." instance=ExtResource("5_qumv8")]
+position = Vector2(12, 102)
+
+[node name="RightWall" parent="." instance=ExtResource("6_uanuc")]
+position = Vector2(302, 299)
+
+[node name="RightWall2" parent="." instance=ExtResource("6_uanuc")]
+position = Vector2(304, 99)
+
+[connection signal="lose_game" from="TriangleEater" to="." method="_on_triangle_eater_lose_game"]

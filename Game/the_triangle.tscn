@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ibat7yi5cdr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vs6r5"]
+friction = 0.0
+bounce = 1.0
+
+[node name="Triangle" type="RigidBody2D" groups=["Trianagle"]]
+modulate = Color(0.270588, 0.270588, 0.270588, 1)
+collision_layer = 8
+collision_mask = 6
+mass = 0.4
+physics_material_override = SubResource("PhysicsMaterial_vs6r5")
+gravity_scale = 0.4
+linear_damp = 1.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 48, 28, 0, -28, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 48, 28, 0, -28, 0)
