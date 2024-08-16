@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://uuth4jhcgoju"]
+[gd_scene load_steps=9 format=3 uid="uid://uuth4jhcgoju"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_o2kd0"]
 [ext_resource type="PackedScene" uid="uid://dxyvbghnsyg6x" path="res://draggy_flipper.tscn" id="2_7cx1p"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c0ibat7yi5cdr" path="res://the_triangle.tscn" id="5_kbeai"]
 [ext_resource type="PackedScene" uid="uid://dddrjlmei7nij" path="res://level_parts/left_wall.tscn" id="5_qumv8"]
 [ext_resource type="PackedScene" uid="uid://dkb4luie751ql" path="res://level_parts/right_wall.tscn" id="6_uanuc"]
+[ext_resource type="PackedScene" uid="uid://bas2qoskfnohi" path="res://level_parts/sectors/sector_a.tscn" id="7_esjgi"]
+[ext_resource type="PackedScene" uid="uid://7orbol4uijdw" path="res://level_parts/sectors/sector_b.tscn" id="7_ox1jr"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_o2kd0")
@@ -16,27 +18,64 @@ position = Vector2(160, 276)
 [node name="Triangle" parent="." instance=ExtResource("5_kbeai")]
 position = Vector2(160, 160)
 
-[node name="LeftWall" parent="." instance=ExtResource("5_qumv8")]
-position = Vector2(0, 300)
-
-[node name="LeftWall2" parent="." instance=ExtResource("5_qumv8")]
-position = Vector2(0, 100)
-
-[node name="LeftWall3" parent="." instance=ExtResource("5_qumv8")]
-position = Vector2(0, -100)
-
-[node name="RightWall" parent="." instance=ExtResource("6_uanuc")]
-position = Vector2(320, 300)
-
-[node name="RightWall3" parent="." instance=ExtResource("6_uanuc")]
-position = Vector2(320, -100)
-
-[node name="RightWall2" parent="." instance=ExtResource("6_uanuc")]
-position = Vector2(320, 100)
-
 [node name="TriangleEater" parent="." instance=ExtResource("4_3uo4o")]
 position = Vector2(160, 470)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="LeftWall" parent="Walls" instance=ExtResource("5_qumv8")]
+position = Vector2(0, 388)
+
+[node name="LeftWall2" parent="Walls" instance=ExtResource("5_qumv8")]
+position = Vector2(0, 188)
+
+[node name="LeftWall3" parent="Walls" instance=ExtResource("5_qumv8")]
+position = Vector2(0, -12)
+
+[node name="RightWall" parent="Walls" instance=ExtResource("6_uanuc")]
+position = Vector2(320, 388)
+
+[node name="RightWall3" parent="Walls" instance=ExtResource("6_uanuc")]
+position = Vector2(320, -12)
+
+[node name="RightWall2" parent="Walls" instance=ExtResource("6_uanuc")]
+position = Vector2(320, 188)
+
+[node name="Sectors" type="Node2D" parent="."]
+
+[node name="SectorA" parent="Sectors" instance=ExtResource("7_esjgi")]
+position = Vector2(75, -400)
+
+[node name="SectorA4" parent="Sectors" instance=ExtResource("7_esjgi")]
+position = Vector2(71, -300)
+
+[node name="BasicPlatform" parent="Sectors/SectorA4" index="0"]
+position = Vector2(163, 0)
+
+[node name="CollisionShape2D" parent="Sectors/SectorA4/ProgressDetector" index="0"]
+position = Vector2(-114, 0)
+
+[node name="SectorA3" parent="Sectors" instance=ExtResource("7_esjgi")]
+position = Vector2(77, -200)
+
+[node name="SectorB2" parent="Sectors" instance=ExtResource("7_ox1jr")]
+position = Vector2(198, -100)
+
+[node name="SectorA2" parent="Sectors" instance=ExtResource("7_esjgi")]
+position = Vector2(81, 0)
+
+[node name="BasicPlatform" parent="Sectors/SectorA2" index="0"]
+position = Vector2(164, 0)
+
+[node name="ProgressDetector" parent="Sectors/SectorA2" index="1"]
+position = Vector2(56, 0)
+
+[node name="SectorB" parent="Sectors" instance=ExtResource("7_ox1jr")]
+position = Vector2(198, 100)
 
 [connection signal="lose_game" from="TriangleEater" to="." method="_on_triangle_eater_lose_game"]
 
 [editable path="DraggyFlipper"]
+[editable path="Sectors/SectorA4"]
+[editable path="Sectors/SectorB2"]
+[editable path="Sectors/SectorA2"]

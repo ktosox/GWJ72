@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu66kyhkn4opf"]
+
+[ext_resource type="Texture2D" uid="uid://chq7gpu2tbx7d" path="res://resources/soft_square_small.png" id="1_xwqmc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eohia"]
+size = Vector2(68, 8)
+
+[node name="BasicPlatform" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.13687e-13)
+shape = SubResource("RectangleShape2D_eohia")
+one_way_collision_margin = 4.0
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(0, -4)
+polygon = PackedVector2Array(-40, 0, -40, 8, 40, 8, 40, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-40, 0)
+polygon = PackedVector2Array(-5, -6, -6, -5, -6, 5, -5, 6, 5, 6, 6, 5, 6, -5, 5, -6)
+
+[node name="SoftSquareSmall2" type="Sprite2D" parent="CollisionPolygon2D"]
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("1_xwqmc")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(40, 0)
+polygon = PackedVector2Array(-5, -6, -6, -5, -6, 5, -5, 6, 5, 6, 6, 5, 6, -5, 5, -6)
+
+[node name="SoftSquareSmall" type="Sprite2D" parent="CollisionPolygon2D2"]
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("1_xwqmc")

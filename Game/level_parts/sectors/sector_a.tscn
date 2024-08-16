@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bas2qoskfnohi"]
+
+[ext_resource type="Script" path="res://level_parts/sectors/sector.gd" id="1_qeijo"]
+[ext_resource type="PackedScene" uid="uid://cu66kyhkn4opf" path="res://level_parts/basic_platform.tscn" id="1_tobmd"]
+[ext_resource type="PackedScene" uid="uid://5bb8fo7xi0xm" path="res://level_parts/progress_detector.tscn" id="4_p0sy3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa8h3"]
+size = Vector2(160, 20)
+
+[node name="SectorA" type="Node2D"]
+script = ExtResource("1_qeijo")
+
+[node name="BasicPlatform" parent="." instance=ExtResource("1_tobmd")]
+
+[node name="ProgressDetector" parent="." instance=ExtResource("4_p0sy3")]
+position = Vector2(150, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProgressDetector"]
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_xa8h3")
+
+[connection signal="body_entered" from="ProgressDetector" to="." method="_on_progress_detector_body_entered"]

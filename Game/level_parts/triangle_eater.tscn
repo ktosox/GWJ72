@@ -28,6 +28,6 @@ shape = SubResource("RectangleShape2D_56q5n")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0, -40)
 texture = SubResource("GradientTexture2D_sv8nr")
-polygon = PackedVector2Array(-158, -8, -170, 48, 170, 48, 162, -3, 143, 14, 108, -2, 76, 18, 35, -5, -6, 17, -47, -10, -79, 11, -108, -9, -134, 11)
+polygon = PackedVector2Array(-158, -8, -167, 70, 174, 71, 162, -3, 143, 14, 108, -2, 76, 18, 35, -5, -6, 17, -47, -10, -79, 11, -108, -9, -134, 11)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

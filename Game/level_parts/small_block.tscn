@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://daor1gsrvc3a"]
+
+[ext_resource type="Texture2D" uid="uid://chq7gpu2tbx7d" path="res://resources/soft_square_small.png" id="1_sa371"]
+
+[node name="SmallBlock" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 8
+
+[node name="SoftSquareSmall" type="Sprite2D" parent="."]
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("1_sa371")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, -6, -6, -5, -6, 5, -5, 6, 5, 6, 6, 5, 6, -5, 5, -6)

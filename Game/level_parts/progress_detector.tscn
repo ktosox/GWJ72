@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://5bb8fo7xi0xm"]
+
+[node name="ProgressDetector" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
