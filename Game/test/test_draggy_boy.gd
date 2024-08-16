@@ -10,9 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _physics_process(delta):
-	#if is_pressed_2:
-		#$CharacterBody2D.global_position = get_global_mouse_position()
+
 		
 func _input(event):
 	if event.is_class("InputEventScreenDrag") and is_pressed_2:

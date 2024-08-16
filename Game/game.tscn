@@ -11,23 +11,32 @@
 script = ExtResource("1_o2kd0")
 
 [node name="DraggyFlipper" parent="." instance=ExtResource("2_7cx1p")]
-position = Vector2(145, 310)
+position = Vector2(160, 276)
 
 [node name="Triangle" parent="." instance=ExtResource("5_kbeai")]
-position = Vector2(140, 162)
-
-[node name="TriangleEater" parent="." instance=ExtResource("4_3uo4o")]
+position = Vector2(160, 160)
 
 [node name="LeftWall" parent="." instance=ExtResource("5_qumv8")]
-position = Vector2(12, 305)
+position = Vector2(0, 300)
 
 [node name="LeftWall2" parent="." instance=ExtResource("5_qumv8")]
-position = Vector2(12, 102)
+position = Vector2(0, 100)
+
+[node name="LeftWall3" parent="." instance=ExtResource("5_qumv8")]
+position = Vector2(0, -100)
 
 [node name="RightWall" parent="." instance=ExtResource("6_uanuc")]
-position = Vector2(302, 299)
+position = Vector2(320, 300)
+
+[node name="RightWall3" parent="." instance=ExtResource("6_uanuc")]
+position = Vector2(320, -100)
 
 [node name="RightWall2" parent="." instance=ExtResource("6_uanuc")]
-position = Vector2(304, 99)
+position = Vector2(320, 100)
+
+[node name="TriangleEater" parent="." instance=ExtResource("4_3uo4o")]
+position = Vector2(160, 470)
 
 [connection signal="lose_game" from="TriangleEater" to="." method="_on_triangle_eater_lose_game"]
+
+[editable path="DraggyFlipper"]

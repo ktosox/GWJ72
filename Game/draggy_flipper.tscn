@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://i7e5ym0awdkf" path="res://resources/square_small.png" id="3_8j07b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ts42"]
-size = Vector2(46, 46)
+size = Vector2(46, 23)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gko6"]
 radius = 25.0
@@ -18,8 +18,10 @@ collision_layer = 2
 collision_mask = 6
 mass = 0.15
 gravity_scale = -2.0
+lock_rotation = true
 
 [node name="SoftSquareSmall" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(1, 0.5)
 texture = ExtResource("3_8j07b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
@@ -28,6 +30,7 @@ shape = SubResource("RectangleShape2D_1ts42")
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 node_a = NodePath("../CharacterBody2D")
 node_b = NodePath("../RigidBody2D")
+bias = 0.3
 softness = 6.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
